@@ -56,10 +56,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="SophiebのBlog">
 <meta property="og:description" content="安装前提安装 Hexo 非常简单。首先您必须安装下列软件：  GitNode.js    安装Hexo安装Node.js后,我们可以使用npm安装Hexo。1$ npm install -g hexo 安装Hexo后,首先需要创建一个文件夹(F:\Hexo),在指定文件夹中执行下列命令(Hexo文件夹上右键，选择git bash), Hexo 将会在文件夹中创建所需文件。1$ hexo init">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-28T02:04:55.817Z">
+<meta property="og:updated_time" content="2017-12-28T02:47:27.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+next搭建个人网站">
 <meta name="twitter:description" content="安装前提安装 Hexo 非常简单。首先您必须安装下列软件：  GitNode.js    安装Hexo安装Node.js后,我们可以使用npm安装Hexo。1$ npm install -g hexo 安装Hexo后,首先需要创建一个文件夹(F:\Hexo),在指定文件夹中执行下列命令(Hexo文件夹上右键，选择git bash), Hexo 将会在文件夹中创建所需文件。1$ hexo init">
@@ -346,7 +346,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-28T10:04:55+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-12-28T10:47:27+08:00">
                 2017-12-28
               </time>
             
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  491
+                  589
                 </span>
               
 
@@ -469,9 +469,14 @@
 <h3 id="安装-next-主题"><a href="#安装-next-主题" class="headerlink" title="安装 next 主题"></a>安装 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">next</a> 主题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 <p>也可以直接到<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">next</a>上直接下载，放到theme目录下。</p>
 <p><code>ps:</code><br>在 Hexo 中主要配置文件，其名为 _config.yml。我们称之为<font size="3" color="#D2691E">站点配置文件</font>。<br>在主题themes目录下有第三方提供的主题配置文件\themes\landscape_config.yml。我们称之为<font size="3" color="#D2691E">主题配置文件</font>。</p>
-<h3 id="使用-next-主题"><a href="#使用-next-主题" class="headerlink" title="使用 next 主题"></a>使用 next 主题</h3><p>打开 <font size="3" color="#D2691E">站点配置文件</font>，找到 theme 字段，将其值更改为 next。</p>
+<h3 id="使用-next-主题"><a href="#使用-next-主题" class="headerlink" title="使用 next 主题"></a>使用 next 主题</h3><p>打开 <font size="3" color="#D2691E">站点配置文件</font>，找到 <code>theme</code> 字段，将其值更改为 <code>next</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next  #冒号后有空格#</span><br></pre></td></tr></table></figure></p>
 <h3 id="预览next主题"><a href="#预览next主题" class="headerlink" title="预览next主题"></a>预览next主题</h3><p>执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure></p>
-<p>这个时候，我们在浏览器中访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> ，就可以看到基于 Hexo 的 next 主题的原型。<br>在<font size="3" color="#D2691E">主题配置文件</font>中找到 scheme 可以修改样式。</p>
+<p>这个时候，我们在浏览器中访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> ，就可以看到基于 Hexo 的 next 主题的原型。<br>在<font size="3" color="#D2691E">主题配置文件</font>中找到 <code>scheme</code> 关键字 可以修改样式。<br>目前 NexT 支持四种 Scheme，他们是：</p>
+<blockquote>
+<p>Muse<br>Mist<br>Pisces<br>Gemini  </p>
+</blockquote>
+<p>更多详情查看<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener"><code>next文档</code></a></p>
+<h3 id="定制侧边栏头像"><a href="#定制侧边栏头像" class="headerlink" title="定制侧边栏头像"></a>定制侧边栏头像</h3><p>打开<font size="3" color="#D2691E">主题配置文件</font>_config.yml，查找 <code>avatar</code>修改其值（添加字段）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">avatar: /uploads/avatar.jpg 需要将你的头像图片放置在 站点的 source/uploads/（新建uploads目录）</span><br><span class="line">或</span><br><span class="line">avatar: /images/avatar.jpg</span><br></pre></td></tr></table></figure></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo s --debug</span><br></pre></td></tr></table></figure>
 <p>加上debug运行，如果运行出错可以在命令行中查看错误提示。</p>
 <h4 id="github上部署"><a href="#github上部署" class="headerlink" title="github上部署"></a>github上部署</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
@@ -654,7 +659,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装前提"><span class="nav-number">1.</span> <span class="nav-text">安装前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Hexo"><span class="nav-number">2.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo常用命令"><span class="nav-number">3.</span> <span class="nav-text">hexo常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-next-主题"><span class="nav-number">4.</span> <span class="nav-text">安装 next 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-next-主题"><span class="nav-number">5.</span> <span class="nav-text">使用 next 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预览next主题"><span class="nav-number">6.</span> <span class="nav-text">预览next主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#本地部署"><span class="nav-number">7.1.</span> <span class="nav-text">本地部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#github上部署"><span class="nav-number">7.2.</span> <span class="nav-text">github上部署</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装前提"><span class="nav-number">1.</span> <span class="nav-text">安装前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Hexo"><span class="nav-number">2.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo常用命令"><span class="nav-number">3.</span> <span class="nav-text">hexo常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-next-主题"><span class="nav-number">4.</span> <span class="nav-text">安装 next 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-next-主题"><span class="nav-number">5.</span> <span class="nav-text">使用 next 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预览next主题"><span class="nav-number">6.</span> <span class="nav-text">预览next主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制侧边栏头像"><span class="nav-number">7.</span> <span class="nav-text">定制侧边栏头像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#本地部署"><span class="nav-number">8.1.</span> <span class="nav-text">本地部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#github上部署"><span class="nav-number">8.2.</span> <span class="nav-text">github上部署</span></a></li></ol></li></ol></div>
             
 
           </div>

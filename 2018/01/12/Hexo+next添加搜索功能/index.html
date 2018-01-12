@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,Next,Github," />
+  <meta name="keywords" content="Hexo,Next,Github,Algolia," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="Algolia是一家为网站与移动应用提供托管式搜索API的初创企业，成立于2012年，总部位于旧金山，曾参加过去年的YC训练营。网站或移动应用只需嵌入简单代码数分钟即可实现搜索功能。 实现的效果如下   注册Algolia打开Algolia进行注册。可直接使用github账号进行注册。 创建index点击 NEW INDEX创建一个新的index。Index Name 后面会使用到。如图所示：">
-<meta name="keywords" content="Hexo,Next,Github">
+<meta name="keywords" content="Hexo,Next,Github,Algolia">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo+next 添加搜索功能">
 <meta property="og:url" content="http://yoursite.com/2018/01/12/Hexo+next添加搜索功能/index.html">
@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/01/12/Hexo+next添加搜索功能/search.png">
 <meta property="og:image" content="http://yoursite.com/2018/01/12/Hexo+next添加搜索功能/algolia_index.png">
 <meta property="og:image" content="http://yoursite.com/2018/01/12/Hexo+next添加搜索功能/key.png">
-<meta property="og:updated_time" content="2018-01-12T08:55:43.737Z">
+<meta property="og:updated_time" content="2018-01-12T09:02:30.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+next 添加搜索功能">
 <meta name="twitter:description" content="Algolia是一家为网站与移动应用提供托管式搜索API的初创企业，成立于2012年，总部位于旧金山，曾参加过去年的YC训练营。网站或移动应用只需嵌入简单代码数分钟即可实现搜索功能。 实现的效果如下   注册Algolia打开Algolia进行注册。可直接使用github账号进行注册。 创建index点击 NEW INDEX创建一个新的index。Index Name 后面会使用到。如图所示：">
@@ -350,7 +350,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-12T16:55:43+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-12T17:02:30+08:00">
                 2018-01-12
               </time>
             
@@ -422,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  340
+                  339
                 </span>
               
 
@@ -466,7 +466,7 @@
 <h3 id="创建index"><a href="#创建index" class="headerlink" title="创建index"></a>创建index</h3><p>点击 <code>NEW INDEX</code>创建一个新的index。<code>Index Name</code> 后面会使用到。如图所示：<br><img src="/2018/01/12/Hexo+next添加搜索功能/algolia_index.png" alt="INDEX"> </p>
 <h3 id="编辑KEY"><a href="#编辑KEY" class="headerlink" title="编辑KEY"></a>编辑KEY</h3><p>点击侧边栏<code>API Keys</code>可以看到 <code>Application ID</code>、 <code>Search-Only API Key</code> 、 <code>Admin API Key</code>。后面我们需要用到。 点击 <code>ALL API KEYS</code>，编辑KEY。如图所示。<br><img src="/2018/01/12/Hexo+next添加搜索功能/key.png" alt="INDEX"> </p>
 <h3 id="安装hexo-algoliasearch插件并配置站点信息"><a href="#安装hexo-algoliasearch插件并配置站点信息" class="headerlink" title="安装hexo-algoliasearch插件并配置站点信息"></a>安装hexo-algoliasearch插件并配置站点信息</h3><p>在Hexo的根目录下执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-algoliasearch --save</span><br></pre></td></tr></table></figure></p>
-<p>打开 <font size="3" color="#D2691E">站点配置文件</font>，添加algolia配置信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">algolia:</span><br><span class="line">  applicationID: JRJ1T9C9A1</span><br><span class="line">  apiKey: </span><br><span class="line">  adminApiKey: </span><br><span class="line">  indexName: #创建index使用的Index Name</span><br><span class="line">  chunkSize: 5000</span><br></pre></td></tr></table></figure></p>
+<p>打开 <font size="3" color="#D2691E">站点配置文件</font>，添加algolia配置信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">algolia:</span><br><span class="line">  applicationID: </span><br><span class="line">  apiKey: </span><br><span class="line">  adminApiKey: </span><br><span class="line">  indexName: #创建index使用的Index Name</span><br><span class="line">  chunkSize: 5000</span><br></pre></td></tr></table></figure></p>
 <p>打开 <font size="3" color="#D2691E">主题配置文件</font>，添加algolia配置信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Algolia Search</span><br><span class="line">algolia_search:</span><br><span class="line">  enable: true</span><br><span class="line">  hits:</span><br><span class="line">    per_page: 10</span><br><span class="line">  labels:</span><br><span class="line">    input_placeholder: Search for Posts</span><br><span class="line">    hits_empty: &quot;We didn&apos;t find any results for the search: $&#123;query&#125;&quot;</span><br><span class="line">    hits_stats: &quot;$&#123;hits&#125; results found in $&#123;time&#125; ms&quot;</span><br></pre></td></tr></table></figure></p>
 <p>在环境变量中添加 <code>HEXO_ALGOLIA_INDEXING_KEY</code>， 在Hexo的根目录执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ export HEXO_ALGOLIA_INDEXING_KEY=粘贴上一步复制的 API KEY</span><br></pre></td></tr></table></figure></p>
 <p>再次执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo algolia</span><br></pre></td></tr></table></figure></p>
@@ -504,6 +504,8 @@
             <a href="/tags/Next/" rel="tag"># Next</a>
           
             <a href="/tags/Github/" rel="tag"># Github</a>
+          
+            <a href="/tags/Algolia/" rel="tag"># Algolia</a>
           
         </div>
       
@@ -632,7 +634,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

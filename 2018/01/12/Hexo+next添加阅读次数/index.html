@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/01/12/Hexo+next添加阅读次数/counter.png">
 <meta property="og:image" content="http://yoursite.com/2018/01/12/Hexo+next添加阅读次数/key.png">
-<meta property="og:updated_time" content="2018-01-12T02:58:12.424Z">
+<meta property="og:updated_time" content="2018-01-12T03:03:39.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo添加阅读次数和搜索">
 <meta name="twitter:description" content="阅读次数统计next 也集成了 leancloud 。可以在leancloud进行账号注册。创建一个新的应用。点击应用进入。创建名称为Counter的Class。  点击设置 &amp;gt; 应用Key 复制App ID 和 App Key   修改配置文件在主题themes目录下有第三方提供的主题配置文件\themes\next_config.yml。我们称之为主题配置文件。打开主题配置文件 添加ke">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-12T10:58:12+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-12T11:03:39+08:00">
                 2018-01-12
               </time>
             
@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  199
+                  247
                 </span>
               
 
@@ -462,6 +462,7 @@
 <p>点击设置 &gt; 应用Key 复制<code>App ID</code> 和 <code>App Key</code></p>
 <p><img src="/2018/01/12/Hexo+next添加阅读次数/key.png" alt="key"> </p>
 <h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在主题themes目录下有第三方提供的主题配置文件\themes\next_config.yml。我们称之为<font size="3" color="#D2691E">主题配置文件</font>。<br>打开<font size="3" color="#D2691E">主题配置文件</font> 添加key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Show number of visitors to each article.</span><br><span class="line"># You can visit https://leancloud.cn get AppID and AppKey.</span><br><span class="line"> leancloud_visitors:</span><br><span class="line">   enable: true</span><br><span class="line">   app_id: </span><br><span class="line">   app_key:</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改统计设置"><a href="#修改统计设置" class="headerlink" title="修改统计设置"></a>修改统计设置</h3><p>打开<font size="3" color="#D2691E">主题配置文件</font> 定位到 <code>post_wordcount</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Post wordcount display settings</span><br><span class="line"># Dependencies: https://github.com/willin/hexo-wordcount</span><br><span class="line">post_wordcount:</span><br><span class="line">  item_text: true</span><br><span class="line">  wordcount: true</span><br><span class="line">  min2read: true</span><br><span class="line">  totalcount: false</span><br><span class="line">  separated_meta: true</span><br></pre></td></tr></table></figure></p>
 <h3 id="Web安全性"><a href="#Web安全性" class="headerlink" title="Web安全性"></a>Web安全性</h3><p>为了保证应用的统计计数功能仅应用于自己的博客，你可以在应用 &gt; 设置 &gt; 安全中心的Web安全域名中加入自己的博客域名，保证数据的调用安全。</p>
 
       
@@ -661,7 +662,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#阅读次数统计"><span class="nav-number">1.</span> <span class="nav-text">阅读次数统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">2.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web安全性"><span class="nav-number">3.</span> <span class="nav-text">Web安全性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#阅读次数统计"><span class="nav-number">1.</span> <span class="nav-text">阅读次数统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">2.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改统计设置"><span class="nav-number">3.</span> <span class="nav-text">修改统计设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web安全性"><span class="nav-number">4.</span> <span class="nav-text">Web安全性</span></a></li></ol></div>
             
 
           </div>

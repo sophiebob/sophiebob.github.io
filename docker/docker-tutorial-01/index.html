@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,Next,Github,leancloud," />
+  <meta name="keywords" content="docker" />
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="阅读次数统计next 也集成了 leancloud 。可以在leancloud进行账号注册。创建一个新的应用。点击应用进入。创建名称为Counter的Class。  点击设置 &amp;gt; 应用Key 复制App ID 和 App Key   修改配置文件在主题themes目录下有第三方提供的主题配置文件\themes\next_config.yml。我们称之为主题配置文件。打开主题配置文件 添加ke">
-<meta name="keywords" content="Hexo,Next,Github,leancloud">
+<meta name="description" content="Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。 Docker 包括三个基本概念理解了这三个概念，就理解了 Docker 的整个生命周期。  镜像 (Image)         #Docker 镜像是用于创建 Docker 容器的模板。 容器">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo添加阅读次数">
-<meta property="og:url" content="http://sophieb.cn/hexo/build-blog-hexo-next-leancloud/index.html">
+<meta property="og:title" content="从零开始学习Docker(一)">
+<meta property="og:url" content="http://sophieb.cn/docker/docker-tutorial-01/index.html">
 <meta property="og:site_name" content="SophiebのBlog">
-<meta property="og:description" content="阅读次数统计next 也集成了 leancloud 。可以在leancloud进行账号注册。创建一个新的应用。点击应用进入。创建名称为Counter的Class。  点击设置 &amp;gt; 应用Key 复制App ID 和 App Key   修改配置文件在主题themes目录下有第三方提供的主题配置文件\themes\next_config.yml。我们称之为主题配置文件。打开主题配置文件 添加ke">
+<meta property="og:description" content="Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。 Docker 包括三个基本概念理解了这三个概念，就理解了 Docker 的整个生命周期。  镜像 (Image)         #Docker 镜像是用于创建 Docker 容器的模板。 容器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://sophieb.cn/hexo/build-blog-hexo-next-leancloud/counter.png">
-<meta property="og:image" content="http://sophieb.cn/hexo/build-blog-hexo-next-leancloud/key.png">
-<meta property="og:updated_time" content="2018-01-16T06:22:04.571Z">
+<meta property="og:updated_time" content="2018-01-19T03:21:56.126Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo添加阅读次数">
-<meta name="twitter:description" content="阅读次数统计next 也集成了 leancloud 。可以在leancloud进行账号注册。创建一个新的应用。点击应用进入。创建名称为Counter的Class。  点击设置 &amp;gt; 应用Key 复制App ID 和 App Key   修改配置文件在主题themes目录下有第三方提供的主题配置文件\themes\next_config.yml。我们称之为主题配置文件。打开主题配置文件 添加ke">
-<meta name="twitter:image" content="http://sophieb.cn/hexo/build-blog-hexo-next-leancloud/counter.png">
+<meta name="twitter:title" content="从零开始学习Docker(一)">
+<meta name="twitter:description" content="Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。 Docker 包括三个基本概念理解了这三个概念，就理解了 Docker 的整个生命周期。  镜像 (Image)         #Docker 镜像是用于创建 Docker 容器的模板。 容器">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://sophieb.cn/hexo/build-blog-hexo-next-leancloud/"/>
+  <link rel="canonical" href="http://sophieb.cn/docker/docker-tutorial-01/"/>
 
 
 
 
 
-  <title>Hexo添加阅读次数 | SophiebのBlog</title>
+  <title>从零开始学习Docker(一) | SophiebのBlog</title>
   
 
 
@@ -304,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://sophieb.cn/hexo/build-blog-hexo-next-leancloud/">
+    <link itemprop="mainEntityOfPage" href="http://sophieb.cn/docker/docker-tutorial-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sophieb">
@@ -321,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo添加阅读次数</h1>
+          <h1 class="post-title" itemprop="name headline">从零开始学习Docker(一)</h1>
         
 
         <div class="post-meta">
@@ -333,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T10:35:07+08:00">
-                2018-01-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T10:57:24+08:00">
+                2018-01-19
               </time>
             
 
@@ -349,8 +346,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-16T14:22:04+08:00">
-                2018-01-16
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-19T11:21:56+08:00">
+                2018-01-19
               </time>
             
           </span>
@@ -368,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo搭建博客/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo搭建博客</span>
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
                   </a>
                 </span>
 
@@ -387,8 +384,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/hexo/build-blog-hexo-next-leancloud/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="hexo/build-blog-hexo-next-leancloud/" itemprop="commentsCount"></span>
+                <a href="/docker/docker-tutorial-01/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="docker/docker-tutorial-01/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -396,7 +393,7 @@
 
           
           
-             <span id="/hexo/build-blog-hexo-next-leancloud/" class="leancloud_visitors" data-flag-title="Hexo添加阅读次数">
+             <span id="/docker/docker-tutorial-01/" class="leancloud_visitors" data-flag-title="从零开始学习Docker(一)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -421,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  247
+                  179
                 </span>
               
 
@@ -458,12 +455,13 @@
       
 
       
-        <h3 id="阅读次数统计"><a href="#阅读次数统计" class="headerlink" title="阅读次数统计"></a>阅读次数统计</h3><p><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener"><code>next</code></a> 也集成了 <a href="https://leancloud.cn/" target="_blank" rel="noopener"><code>leancloud</code></a> 。可以在<a href="https://leancloud.cn/" target="_blank" rel="noopener">leancloud</a>进行账号注册。<br>创建一个新的应用。点击应用进入。<br>创建名称为Counter的Class。<br><img src="/hexo/build-blog-hexo-next-leancloud/counter.png" alt="Counter"> </p>
-<p>点击设置 &gt; 应用Key 复制<code>App ID</code> 和 <code>App Key</code></p>
-<p><img src="/hexo/build-blog-hexo-next-leancloud/key.png" alt="key"> </p>
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在主题themes目录下有第三方提供的主题配置文件\themes\next_config.yml。我们称之为<font size="3" color="#D2691E">主题配置文件</font>。<br>打开<font size="3" color="#D2691E">主题配置文件</font> 添加key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Show number of visitors to each article.</span><br><span class="line"># You can visit https://leancloud.cn get AppID and AppKey.</span><br><span class="line"> leancloud_visitors:</span><br><span class="line">   enable: true</span><br><span class="line">   app_id: </span><br><span class="line">   app_key:</span><br></pre></td></tr></table></figure></p>
-<h3 id="修改统计设置"><a href="#修改统计设置" class="headerlink" title="修改统计设置"></a>修改统计设置</h3><p>打开<font size="3" color="#D2691E">主题配置文件</font> 定位到 <code>post_wordcount</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Post wordcount display settings</span><br><span class="line"># Dependencies: https://github.com/willin/hexo-wordcount</span><br><span class="line">post_wordcount:</span><br><span class="line">  item_text: true</span><br><span class="line">  wordcount: true</span><br><span class="line">  min2read: true</span><br><span class="line">  totalcount: false</span><br><span class="line">  separated_meta: true</span><br></pre></td></tr></table></figure></p>
-<h3 id="Web安全性"><a href="#Web安全性" class="headerlink" title="Web安全性"></a>Web安全性</h3><p>为了保证应用的统计计数功能仅应用于自己的博客，你可以在应用 &gt; 设置 &gt; 安全中心的Web安全域名中加入自己的博客域名，保证数据的调用安全。</p>
+        <p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
+<h3 id="Docker-包括三个基本概念"><a href="#Docker-包括三个基本概念" class="headerlink" title="Docker 包括三个基本概念"></a>Docker 包括三个基本概念</h3><p>理解了这三个概念，就理解了 Docker 的整个生命周期。</p>
+<ul>
+<li>镜像 (Image)         #Docker 镜像是用于创建 Docker 容器的模板。</li>
+<li>容器 (Container)     #容器是独立运行的一个或一组应用。</li>
+<li>仓库 (Repository)    #Docker 仓库用来保存镜像，可以理解为代码控制中的代码仓库(当做git)。</li>
+</ul>
 
       
     </div>
@@ -492,13 +490,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-          
-            <a href="/tags/Next/" rel="tag"># Next</a>
-          
-            <a href="/tags/Github/" rel="tag"># Github</a>
-          
-            <a href="/tags/leancloud/" rel="tag"># leancloud</a>
+            <a href="/tags/docker/" rel="tag"># docker</a>
           
         </div>
       
@@ -511,8 +503,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/hexo/build-blog-hexo-next-domain/" rel="next" title="Hexo 注册及绑定自己的域名地址">
-                <i class="fa fa-chevron-left"></i> Hexo 注册及绑定自己的域名地址
+              <a href="/data/areacode-postalcode/" rel="next" title="区号和邮政编码">
+                <i class="fa fa-chevron-left"></i> 区号和邮政编码
               </a>
             
           </div>
@@ -520,10 +512,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/hexo/build-blog-hexo-next-algolia/" rel="prev" title="Hexo+next 添加搜索功能">
-                Hexo+next 添加搜索功能 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -666,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#阅读次数统计"><span class="nav-number">1.</span> <span class="nav-text">阅读次数统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">2.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改统计设置"><span class="nav-number">3.</span> <span class="nav-text">修改统计设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web安全性"><span class="nav-number">4.</span> <span class="nav-text">Web安全性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-包括三个基本概念"><span class="nav-number">1.</span> <span class="nav-text">Docker 包括三个基本概念</span></a></li></ol></div>
             
 
           </div>

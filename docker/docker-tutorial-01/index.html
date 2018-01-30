@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://sophieb.cn/docker/docker-tutorial-01/docker_ce.png">
 <meta property="og:image" content="http://sophieb.cn/docker/docker-tutorial-01/accelerator.png">
-<meta property="og:updated_time" content="2018-01-22T02:26:14.294Z">
+<meta property="og:updated_time" content="2018-01-30T07:25:34.498Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始学习Docker(一)">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。 Docker 包括三个基本概念理解了这三个概念，就理解了 Docker 的整个生命周期。  镜像 (Image)&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-22T10:26:14+08:00">
-                2018-01-22
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-30T15:25:34+08:00">
+                2018-01-30
               </time>
             
           </span>
@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  914
+                  1,780
                 </span>
               
 
@@ -437,7 +437,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  8
                 </span>
               
             </div>
@@ -485,7 +485,37 @@
 <li><code>CREATED</code> 创建具体时间</li>
 <li><code>SIZE</code> 镜像大小</li>
 </ul>
-<h3 id="Dockerfile创建镜像"><a href="#Dockerfile创建镜像" class="headerlink" title="Dockerfile创建镜像"></a>Dockerfile创建镜像</h3>
+<h3 id="Dockerfile创建镜像"><a href="#Dockerfile创建镜像" class="headerlink" title="Dockerfile创建镜像"></a>Dockerfile创建镜像</h3><p>以交互方式运行我们本地ubuntu容器， 尝试使用vim命令.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">iMac:~ yinxinwei$ docker run -it ubuntu:latest /bin/bash</span><br><span class="line">root@778f824a9c9d:/# sshd   </span><br><span class="line">bash: sshd: command not found</span><br><span class="line">root@778f824a9c9d:/# </span><br><span class="line">bash: vim: command not found</span><br><span class="line">root@778f824a9c9d:/#</span><br></pre></td></tr></table></figure>
+<p>会发现容器中没有安装该服务。</p>
+<p>创建Dockerfile<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir ubuntu_vim</span><br><span class="line">$ touch Dockerfile</span><br><span class="line">$ mkdir ubuntu_vim</span><br><span class="line">$ cd ubuntu_vim/</span><br><span class="line">$ touch Dockerfile</span><br></pre></td></tr></table></figure></p>
+<p>编辑Dockerfile<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># ubuntu中安装vim</span><br><span class="line">FROM ubuntu:latest</span><br><span class="line">MAINTAINER sophieb &lt;motherlovefather@126.com&gt;</span><br><span class="line">RUN apt-get -y update &amp;&amp; apt-get install -y vim</span><br></pre></td></tr></table></figure></p>
+<p>Dockerfile基本语法</p>
+<ul>
+<li><code>#</code> 标识来注释</li>
+<li><code>FROM</code> 表示 Docker 使用哪个镜像作为基础</li>
+<li><code>MAINTAINER</code> 用户信息</li>
+<li><code>RUN</code> 表示会在创建镜像中运行，比如安装一个软件包，在这里使用 apt-get 来安装 vim </li>
+<li><code>ADD</code> 命令复制本地文件到镜像</li>
+<li><code>EXPOSE</code> 命令来向外部开放端口</li>
+<li><code>CMD</code> 命令来描述容器启动后运行的程序</li>
+</ul>
+<p>编写完成 Dockerfile 后，可以使用 <code>docker build</code> 来生成镜像。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t ubuntu_vim:v1 .</span><br><span class="line">Sending build context to Docker daemon  2.048kB</span><br><span class="line">Step 1/3 : FROM ubuntu:latest</span><br><span class="line"> ---&gt; 2a4cca5ac898</span><br><span class="line">Step 2/3 : MAINTAINER sophieb &lt;motherlovefather@126.com&gt;</span><br><span class="line"> ---&gt; Running in 332188c74e54</span><br><span class="line">Removing intermediate container 332188c74e54</span><br><span class="line"> ---&gt; aa7517a6be99</span><br><span class="line">Step 3/3 : RUN apt-get -y update &amp;&amp; apt-get install -y vim</span><br><span class="line"> ---&gt; Running in 532f2f0ac2fe</span><br><span class="line">...</span><br><span class="line">Processing triggers for libc-bin (2.23-0ubuntu9) ...</span><br><span class="line">Removing intermediate container 532f2f0ac2fe</span><br><span class="line"> ---&gt; 8f7776757b7c</span><br><span class="line">Successfully built 8f7776757b7c</span><br><span class="line">Successfully tagged ubuntu_vim:v1</span><br></pre></td></tr></table></figure></p>
+<p>其中 <code>-t</code> 标记来添加 <code>tag</code>，指定新的镜像的信息。 “.” 是 Dockerfile 所在的路径（当前目录），也可以替换为一个具体的 Dockerfile 的路径。</p>
+<p>用 <code>docker images</code> 查看镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br><span class="line">REPOSITORY                                       TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu_vim                                       v1                  8f7776757b7c        9 minutes ago       209MB</span><br><span class="line">ubuntu                                           latest              2a4cca5ac898        6 days ago          111MB</span><br></pre></td></tr></table></figure></p>
+<p>利用新创建的镜像来启动一个容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it 8f7776757b7c /bin/bash</span><br><span class="line">或者</span><br><span class="line">$ docker run -it ubuntu_vim:v1 /bin/bash</span><br></pre></td></tr></table></figure></p>
+<p>查看vim版本信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim --version</span><br><span class="line">VIM - Vi IMproved 7.4 (2013 Aug 10, compiled Nov 24 2016 16:44:48)</span><br><span class="line">Included patches: 1-1689</span><br><span class="line">Extra patches: 8.0.0056</span><br><span class="line">Modified by pkg-vim-maintainers@lists.alioth.debian.org</span><br><span class="line">Compiled by pkg-vim-maintainers@lists.alioth.debian.org</span><br><span class="line">Huge version without GUI.  Features included (+) or not (-):</span><br></pre></td></tr></table></figure></p>
+<p>可以用 docker tag 命令来修改镜像的标签。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag 8f7776757b7c ubuntu_v:dev</span><br><span class="line">$ docker images</span><br><span class="line">REPOSITORY                                       TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu_v                                         dev                 8f7776757b7c        23 minutes ago      209MB</span><br><span class="line">ubuntu_vim                                       v1                  8f7776757b7c        23 minutes ago      209MB</span><br><span class="line">ubuntu                                           latest              2a4cca5ac898        6 days ago          111MB</span><br></pre></td></tr></table></figure></p>
+<h3 id="导出和载入镜像"><a href="#导出和载入镜像" class="headerlink" title="导出和载入镜像"></a>导出和载入镜像</h3><p>导出镜像到本地文件，可以使用 <code>docker save</code> 命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker save -o ubuntu_vim_local.tar ubuntu_vim:v1</span><br></pre></td></tr></table></figure></p>
+<p>-o :输出到的文件。</p>
+<p>导入到本地镜像库，可以使用 <code>docker load</code> 命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker load &lt; ubuntu_vim_local.tar</span><br><span class="line">或</span><br><span class="line">$ docker load --input ubuntu_vim_local.tar</span><br></pre></td></tr></table></figure>
+<p>我们也可以使用 <code>docker export</code> 和 <code>docker import</code> 导出和载入。<br>注：<br><code>docker save images_name</code>：将镜像导出为文件，再使用<code>docker load</code>命令将文件导入为一个镜像，会保存该镜像的的所有历史记录。比<code>docker export</code>命令导出的文件大，很好理解，因为会保存镜像的所有历史记录。 </p>
+<p><code>docker export container_id</code>：将容器导出为文件，再使用<code>docker import</code>命令将容器导入成为一个新的镜像，但是相比<code>docker save</code>命令，容器文件会丢失所有元数据和历史记录，仅保存容器当时的状态，相当于虚拟机快照。</p>
+<h3 id="上传镜像"><a href="#上传镜像" class="headerlink" title="上传镜像"></a>上传镜像</h3><p>以通过 <code>docker push</code> 命令，把自己创建的镜像上传到仓库中来共享。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag 8f7776757b7c registry.cn-hangzhou.aliyuncs.com/sophieb/ubuntu:v1</span><br><span class="line">$ docker push registry.cn-hangzhou.aliyuncs.com/sophieb/ubuntu:v1</span><br></pre></td></tr></table></figure></p>
+<h3 id="移除镜像"><a href="#移除镜像" class="headerlink" title="移除镜像"></a>移除镜像</h3><p>移除本地的镜像，可以使用 <code>docker rmi</code>命令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker rmi ubuntu_vim:v1</span><br></pre></td></tr></table></figure></p>
+<p>注意 <code>docker rm</code> 命令是移除容器。</p>
+
       
     </div>
     
@@ -677,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-包括三个基本概念"><span class="nav-number">1.</span> <span class="nav-text">Docker 包括三个基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker安装"><span class="nav-number">2.</span> <span class="nav-text">Docker安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像加速器"><span class="nav-number">3.</span> <span class="nav-text">Docker镜像加速器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取镜像"><span class="nav-number">4.</span> <span class="nav-text">获取镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看本机所有镜像"><span class="nav-number">5.</span> <span class="nav-text">查看本机所有镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dockerfile创建镜像"><span class="nav-number">6.</span> <span class="nav-text">Dockerfile创建镜像</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-包括三个基本概念"><span class="nav-number">1.</span> <span class="nav-text">Docker 包括三个基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker安装"><span class="nav-number">2.</span> <span class="nav-text">Docker安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像加速器"><span class="nav-number">3.</span> <span class="nav-text">Docker镜像加速器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取镜像"><span class="nav-number">4.</span> <span class="nav-text">获取镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看本机所有镜像"><span class="nav-number">5.</span> <span class="nav-text">查看本机所有镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dockerfile创建镜像"><span class="nav-number">6.</span> <span class="nav-text">Dockerfile创建镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出和载入镜像"><span class="nav-number">7.</span> <span class="nav-text">导出和载入镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传镜像"><span class="nav-number">8.</span> <span class="nav-text">上传镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除镜像"><span class="nav-number">9.</span> <span class="nav-text">移除镜像</span></a></li></ol></div>
             
 
           </div>

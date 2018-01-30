@@ -5,14 +5,19 @@
     
   <url>
     <loc>http://sophieb.cn/docker/docker-tutorial-02/</loc>
-    <lastmod>2018-01-30T09:42:19.174Z</lastmod>
+    <lastmod>2018-01-30T10:00:53.406Z</lastmod>
     <data>
         <display>
         <title>从零开始学习Docker(二)</title>
         <pubTime>2018-01-30T07:33:58.000Z</pubTime>
         
+        <tag>docker</tag>
+         
          
            
+             
+              <breadCrumb title="docker" url="http://sophieb.cn/categories/docker/"/>
+          
         </display>
     </data>
     </url>

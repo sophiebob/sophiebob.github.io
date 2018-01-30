@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sophieb.cn/docker/docker-tutorial-02/</loc>
+    
+    <lastmod>2018-01-30T09:42:19.174Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://sophieb.cn/docker/docker-tutorial-01/</loc>
     
     <lastmod>2018-01-30T07:25:34.498Z</lastmod>

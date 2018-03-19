@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="SophiebのBlog">
 <meta property="og:description" content="DecimalFormat 是 NumberFormat 的一个具体子类，用于格式化十进制数字。该类设计有各种功能，使其能够分析和格式化任意语言环境中的数，包括对西方语言、阿拉伯语和印度语数字的支持。它还支持不同类型的数，包括整数 (123)、定点数 (123.4)、科学记数法表示的数 (1.23E4)、百分数 (12%) 和金额 ($123)。所有这些内容都可以本地化。 特殊模式字符 0  阿拉">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-19T07:43:04.906Z">
+<meta property="og:updated_time" content="2018-03-19T07:51:16.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DecimalFormat四舍五入">
 <meta name="twitter:description" content="DecimalFormat 是 NumberFormat 的一个具体子类，用于格式化十进制数字。该类设计有各种功能，使其能够分析和格式化任意语言环境中的数，包括对西方语言、阿拉伯语和印度语数字的支持。它还支持不同类型的数，包括整数 (123)、定点数 (123.4)、科学记数法表示的数 (1.23E4)、百分数 (12%) 和金额 ($123)。所有这些内容都可以本地化。 特殊模式字符 0  阿拉">
@@ -346,7 +346,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-19T15:43:04+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-19T15:51:16+08:00">
                 2018-03-19
               </time>
             
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  384
+                  430
                 </span>
               
 
@@ -466,7 +466,7 @@
 </ul>
 <h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(new DecimalFormat(&quot;0.0&quot;).format(new Double(&quot;12.34&quot;)));</span><br><span class="line">System.out.println(new DecimalFormat(&quot;#.#&quot;).format(new Double(&quot;12.34&quot;)));</span><br><span class="line">System.out.println(new DecimalFormat(&quot;000.000&quot;).format(new Double(&quot;12.34&quot;)));</span><br><span class="line">System.out.println(new DecimalFormat(&quot;###.###&quot;).format(new Double(&quot;12.34&quot;)));</span><br><span class="line">System.out.println(new DecimalFormat(&quot;0%&quot;).format(new Double(&quot;12.34&quot;)));</span><br><span class="line"></span><br><span class="line">结果============</span><br><span class="line"></span><br><span class="line">12.3</span><br><span class="line">12.3</span><br><span class="line">012.340</span><br><span class="line">12.34</span><br><span class="line">1234%</span><br></pre></td></tr></table></figure>
 <h4 id="四舍五入"><a href="#四舍五入" class="headerlink" title="四舍五入"></a>四舍五入</h4><p>DecimalForma函数默认的四舍五入的方法是银行家算法。四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(new DecimalFormat(&quot;##.#&quot;).format(new Double(&quot;88.85&quot;)));</span><br><span class="line">System.out.println(new DecimalFormat(&quot;##.#&quot;).format(new Double(&quot;88.851&quot;)));</span><br><span class="line">结果============</span><br><span class="line">88.8</span><br><span class="line">88.9</span><br></pre></td></tr></table></figure></p>
-<p>注：此<code>四舍五入</code>和我们通常理解的不一样，绝对是大坑。</p>
+<p>注：此<code>四舍五入</code>和我们通常理解的不一样，绝对是大坑。<code>DecimalFormat</code> 提供了public DecimalFormat (String pattern, DecimalFormatSymbols symbols)构造方法，默认情况下，它使用 <code>RoundingMode.HALF_EVEN</code>。<br>RoundingMode是一个枚举类，有一下几个常量：<code>UP</code>，<code>DOWN</code>，<code>CEILING</code>，<code>FLOOR</code>，<code>HALF_UP</code>，<code>HALF_DOWN</code>，<code>HALF_EVEN</code>，<code>UNNECESSARY</code>。</p>
 
       
     </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT, Java, Android, sophieb, sophie, 搭建Hexo" />
+  <meta name="keywords" content="设计模式 组合模式" />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="享受生活">
+<meta name="description" content="组合模式组合模式是把一组相似的对象合并在一起。按照树形结构来组合对象按层次区分。高层模块调用简单、节点自由添加。 将对象组合成树形结构以表示“部分-整体”的层次结构，组合模式使得用户对单个对象和组合对象的使用具有一致性。掌握组合模式的重点是要理解清楚 “部分/整体” 还有 ”单个对象“ 与 “组合对象” 的含义。 举例：创建IEmployee抽象类（也可以使用接口）。创建单个对象AndroidEm">
+<meta name="keywords" content="设计模式 组合模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="desigin-pattern-tutorial-01">
-<meta property="og:url" content="http://sophieb.cn/desigin-pattern-tutorial-01/index.html">
+<meta property="og:title" content="设计模式 组合模式">
+<meta property="og:url" content="http://sophieb.cn/designpattern/desigin-pattern-tutorial-05/index.html">
 <meta property="og:site_name" content="SophiebのBlog">
-<meta property="og:description" content="享受生活">
+<meta property="og:description" content="组合模式组合模式是把一组相似的对象合并在一起。按照树形结构来组合对象按层次区分。高层模块调用简单、节点自由添加。 将对象组合成树形结构以表示“部分-整体”的层次结构，组合模式使得用户对单个对象和组合对象的使用具有一致性。掌握组合模式的重点是要理解清楚 “部分/整体” 还有 ”单个对象“ 与 “组合对象” 的含义。 举例：创建IEmployee抽象类（也可以使用接口）。创建单个对象AndroidEm">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-20T06:11:18.962Z">
+<meta property="og:updated_time" content="2018-03-27T09:42:14.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="desigin-pattern-tutorial-01">
-<meta name="twitter:description" content="享受生活">
+<meta name="twitter:title" content="设计模式 组合模式">
+<meta name="twitter:description" content="组合模式组合模式是把一组相似的对象合并在一起。按照树形结构来组合对象按层次区分。高层模块调用简单、节点自由添加。 将对象组合成树形结构以表示“部分-整体”的层次结构，组合模式使得用户对单个对象和组合对象的使用具有一致性。掌握组合模式的重点是要理解清楚 “部分/整体” 还有 ”单个对象“ 与 “组合对象” 的含义。 举例：创建IEmployee抽象类（也可以使用接口）。创建单个对象AndroidEm">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://sophieb.cn/desigin-pattern-tutorial-01/"/>
+  <link rel="canonical" href="http://sophieb.cn/designpattern/desigin-pattern-tutorial-05/"/>
 
 
 
 
 
-  <title>desigin-pattern-tutorial-01 | SophiebのBlog</title>
+  <title>设计模式 组合模式 | SophiebのBlog</title>
   
 
 
@@ -300,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://sophieb.cn/desigin-pattern-tutorial-01/">
+    <link itemprop="mainEntityOfPage" href="http://sophieb.cn/designpattern/desigin-pattern-tutorial-05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sophieb">
@@ -317,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">desigin-pattern-tutorial-01</h1>
+          <h1 class="post-title" itemprop="name headline">设计模式 组合模式</h1>
         
 
         <div class="post-meta">
@@ -345,12 +346,34 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-20T14:11:18+08:00">
-                2018-03-20
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-27T17:42:14+08:00">
+                2018-03-27
               </time>
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -361,8 +384,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/desigin-pattern-tutorial-01/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="desigin-pattern-tutorial-01/" itemprop="commentsCount"></span>
+                <a href="/designpattern/desigin-pattern-tutorial-05/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="designpattern/desigin-pattern-tutorial-05/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -370,7 +393,7 @@
 
           
           
-             <span id="/desigin-pattern-tutorial-01/" class="leancloud_visitors" data-flag-title="desigin-pattern-tutorial-01">
+             <span id="/designpattern/desigin-pattern-tutorial-05/" class="leancloud_visitors" data-flag-title="设计模式 组合模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -395,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  417
                 </span>
               
 
@@ -411,7 +434,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -432,7 +455,12 @@
       
 
       
-        
+        <h4 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h4><p>组合模式是把一组相似的对象合并在一起。按照树形结构来组合对象按层次区分。高层模块调用简单、节点自由添加。</p>
+<p>将对象组合成树形结构以表示“部分-整体”的层次结构，组合模式使得用户对单个对象和组合对象的使用具有一致性。掌握组合模式的重点是要理解清楚 “部分/整体” 还有 ”单个对象“ 与 “组合对象” 的含义。</p>
+<p>举例：创建IEmployee抽象类（也可以使用接口）。创建单个对象AndroidEmployee、IOSEmployee实现IEmployee。创建嘴和对象ManagerEmployee。<br>相当于主管负责管理ios和android开发。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">public abstract class IEmployee &#123;</span><br><span class="line">    public abstract void add(IEmployee c);</span><br><span class="line">    public abstract void remove(IEmployee c);</span><br><span class="line">    </span><br><span class="line">    private String name;</span><br><span class="line">    private int salary;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class AndroidEmployee extends IEmployee&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void add(IEmployee c) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void remove(IEmployee c) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class IOSEmployee extends IEmployee&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void add(IEmployee c) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void remove(IEmployee c) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ManagerEmployee extends IEmployee&#123;</span><br><span class="line"></span><br><span class="line">    public List&lt;IEmployee&gt; list = new ArrayList&lt;IEmployee&gt;();</span><br><span class="line">    @Override</span><br><span class="line">    public void add(IEmployee c) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void remove(IEmployee c) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        IEmployee iosEmployee = new IOSEmployee();</span><br><span class="line">        iosEmployee.setName(&quot;叼叼&quot;);</span><br><span class="line">        iosEmployee.setSalary(15000);</span><br><span class="line"></span><br><span class="line">        IEmployee androidEmployee = new AndroidEmployee();</span><br><span class="line">        androidEmployee.setName(&quot;波波&quot;);</span><br><span class="line">        androidEmployee.setSalary(13000);</span><br><span class="line"></span><br><span class="line">        ManagerEmployee managerEmployee = new ManagerEmployee();</span><br><span class="line">        managerEmployee.setName(&quot;灰灰&quot;);</span><br><span class="line">        managerEmployee.setSalary(25000);</span><br><span class="line"></span><br><span class="line">        managerEmployee.add(iosEmployee);</span><br><span class="line">        managerEmployee.add(androidEmployee);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>网站导航栏、文件和文件夹管理、树形菜单等。只要是要体现整体与局部有相似关系都可以考虑组合模式。</p>
+
       
     </div>
     
@@ -458,6 +486,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
 
       
       
@@ -476,6 +512,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/designpattern/desigin-pattern-tutorial-04/" rel="prev" title="设计模式 外观模式">
+                设计模式 外观模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -532,8 +572,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person" rel="external nofollow">
             
@@ -552,7 +601,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -599,6 +648,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#组合模式"><span class="nav-number">1.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用场景"><span class="nav-number">2.</span> <span class="nav-text">使用场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

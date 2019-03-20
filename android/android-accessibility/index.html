@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="SophiebのBlog">
 <meta property="og:description" content="前言目前我国有1700多万视障人士，意味着平均每81人中就有一位视障人士可能会在使用互联网服务时遇到困难。 无障碍服务，可以监听界面的操作，比如：点击、拖动、界面更新等信息。更为强大的是可以获取屏幕信息，同时具备普通Service的能力。 指南Android产品的无障碍主要是针对视觉障碍人士，在设备的辅助功能中开启无障碍服务（如TalkBack）后，它能够读取屏幕上的文本信息，转化为语音提示，达到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-20T06:14:28.268Z">
+<meta property="og:updated_time" content="2019-03-20T07:40:13.158Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android无障碍服务">
 <meta name="twitter:description" content="前言目前我国有1700多万视障人士，意味着平均每81人中就有一位视障人士可能会在使用互联网服务时遇到困难。 无障碍服务，可以监听界面的操作，比如：点击、拖动、界面更新等信息。更为强大的是可以获取屏幕信息，同时具备普通Service的能力。 指南Android产品的无障碍主要是针对视觉障碍人士，在设备的辅助功能中开启无障碍服务（如TalkBack）后，它能够读取屏幕上的文本信息，转化为语音提示，达到">
@@ -346,7 +346,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-20T14:14:28+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-20T15:40:13+08:00">
                 2019-03-20
               </time>
             
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,519
+                  2,630
                 </span>
               
 
@@ -434,7 +434,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  13
+                  14
                 </span>
               
             </div>
@@ -466,6 +466,7 @@
 <li>触摸目标大小至少为48*48dp，触摸目标间距至少为8dp</li>
 <li>应将相关的、有相同响应的元素组合在一起（等）</li>
 </ul>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>谷歌已经在View、ViewGroup、TextView等控件的文字改变、滑动、UI变化埋下了接口，当这些状态变化时控件会回调系统API，API系统然后对这些对象的数据进行组装，为了数据的安全性，系统会重新创建一些对象（AccessibilityEvent、AccessibilityNodeInfo）来间接保存这些数据，然后通过跨进程将这些数据返回给对应的Service中</p>
 <h3 id="开启无障碍服务"><a href="#开启无障碍服务" class="headerlink" title="开启无障碍服务"></a>开启无障碍服务</h3><ul>
 <li>下载安装TalkBack软件（有些系统自带），它能读取屏幕中的文本信息</li>
 <li>保证有文字转语音（TTS）输出引擎，通常手机会自带一个，另外也可以下载讯飞语记</li>
@@ -684,7 +685,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指南"><span class="nav-number">2.</span> <span class="nav-text">指南</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规范细则"><span class="nav-number">3.</span> <span class="nav-text">规范细则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启无障碍服务"><span class="nav-number">4.</span> <span class="nav-text">开启无障碍服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践"><span class="nav-number">5.</span> <span class="nav-text">实践</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指南"><span class="nav-number">2.</span> <span class="nav-text">指南</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规范细则"><span class="nav-number">3.</span> <span class="nav-text">规范细则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">4.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启无障碍服务"><span class="nav-number">5.</span> <span class="nav-text">开启无障碍服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践"><span class="nav-number">6.</span> <span class="nav-text">实践</span></a></li></ol></div>
             
 
           </div>

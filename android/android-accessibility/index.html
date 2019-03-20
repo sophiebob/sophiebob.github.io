@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言目前我国有1700多万视障人士，意味着平均每81人中就有一位视障人士可能会在使用互联网服务时遇到困难。 无障碍服务，可以监听界面的操作，比如：点击、拖动、界面更新等信息。更为强大的是可以获取屏幕信息，同时具备普通Service的能力。 指南Android产品的无障碍主要是针对视觉障碍人士，在设备的辅助功能中开启无障碍服务（如TalkBack）后，它能够读取屏幕上的文本信息，转化为语音提示，达到">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android无障碍服务">
+<meta property="og:url" content="http://sophieb.cn/android/android-accessibility/index.html">
+<meta property="og:site_name" content="SophiebのBlog">
+<meta property="og:description" content="前言目前我国有1700多万视障人士，意味着平均每81人中就有一位视障人士可能会在使用互联网服务时遇到困难。 无障碍服务，可以监听界面的操作，比如：点击、拖动、界面更新等信息。更为强大的是可以获取屏幕信息，同时具备普通Service的能力。 指南Android产品的无障碍主要是针对视觉障碍人士，在设备的辅助功能中开启无障碍服务（如TalkBack）后，它能够读取屏幕上的文本信息，转化为语音提示，达到">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-20T06:14:28.268Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android无障碍服务">
+<meta name="twitter:description" content="前言目前我国有1700多万视障人士，意味着平均每81人中就有一位视障人士可能会在使用互联网服务时遇到困难。 无障碍服务，可以监听界面的操作，比如：点击、拖动、界面更新等信息。更为强大的是可以获取屏幕信息，同时具备普通Service的能力。 指南Android产品的无障碍主要是针对视觉障碍人士，在设备的辅助功能中开启无障碍服务（如TalkBack）后，它能够读取屏幕上的文本信息，转化为语音提示，达到">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'JRJ1T9C9A1',
+      apiKey: 'ae6e6e8121fded36e4c835ea030abd6d',
+      indexName: 'pro_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sophieb.cn/android/android-accessibility/"/>
+
+
+
+
+
+  <title>Android无障碍服务 | SophiebのBlog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SophiebのBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">从0开始</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sophieb.cn/android/android-accessibility/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sophieb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SophiebのBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android无障碍服务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T14:08:52+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-20T14:14:28+08:00">
+                2019-03-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/android/android-accessibility/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="android/android-accessibility/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/android/android-accessibility/" class="leancloud_visitors" data-flag-title="Android无障碍服务">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,519
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>目前我国有1700多万视障人士，意味着平均每81人中就有一位视障人士可能会在使用互联网服务时遇到困难。</p>
+<p>无障碍服务，可以监听界面的操作，比如：点击、拖动、界面更新等信息。更为强大的是可以获取屏幕信息，同时具备普通Service的能力。</p>
+<h3 id="指南"><a href="#指南" class="headerlink" title="指南"></a>指南</h3><p>Android产品的无障碍主要是针对视觉障碍人士，在设备的辅助功能中开启无障碍服务（如TalkBack）后，它能够读取屏幕上的文本信息，转化为语音提示，达到信息无障碍。</p>
+<h3 id="规范细则"><a href="#规范细则" class="headerlink" title="规范细则"></a>规范细则</h3><ul>
+<li>contentDescription</li>
+<li>文字标签要有意义</li>
+<li>装饰性的UI元素需要去掉标签和焦点</li>
+<li>EditText需通过hint属性设置标签</li>
+<li>触摸目标大小至少为48*48dp，触摸目标间距至少为8dp</li>
+<li>应将相关的、有相同响应的元素组合在一起（等）</li>
+</ul>
+<h3 id="开启无障碍服务"><a href="#开启无障碍服务" class="headerlink" title="开启无障碍服务"></a>开启无障碍服务</h3><ul>
+<li>下载安装TalkBack软件（有些系统自带），它能读取屏幕中的文本信息</li>
+<li>保证有文字转语音（TTS）输出引擎，通常手机会自带一个，另外也可以下载讯飞语记</li>
+<li>进入设置 -&gt; 辅助功能（或高级选项） -&gt; 找到TalkBack服务并开启</li>
+</ul>
+<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>微信抢红包插件</p>
+<ul>
+<li>AccessibilityService</li>
+<li>AccessibilityEvent</li>
+<li><p>AccessibilityNodeInfo</p>
+</li>
+<li><p>开启无障碍服务权限</p>
+</li>
+<li>查看微信红包对应的页面</li>
+<li>关于如何获取app页面中控件的id<br>（DDMS 中选择设备后点击Dump View Hierarchy for UI Automator即可查看）</li>
+</ul>
+<p>manifest中的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 注册辅助功能服务--&gt;</span><br><span class="line">        &lt;service android:name=&quot;.service.RedPackageService&quot;</span><br><span class="line">            android:label=&quot;@string/accessibility_desc&quot;</span><br><span class="line">            android:exported=&quot;true&quot;</span><br><span class="line">            android:permission=&quot;android.permission.BIND_ACCESSIBILITY_SERVICE&quot;</span><br><span class="line">            android:process=&quot;:BackgroundService&quot;&gt;</span><br><span class="line">            &lt;intent-filter&gt;</span><br><span class="line">                &lt;action android:name=&quot;android.accessibilityservice.AccessibilityService&quot; /&gt;</span><br><span class="line">            &lt;/intent-filter&gt;</span><br><span class="line">            &lt;meta-data</span><br><span class="line">                android:name=&quot;android.accessibilityservice&quot;</span><br><span class="line">                android:resource=&quot;@xml/accessibility_config&quot;/&gt;</span><br><span class="line">        &lt;/service&gt;</span><br></pre></td></tr></table></figure></p>
+<p>meta-data中的xml资源文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;accessibility-service</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:description=&quot;@string/accessibility_desc&quot;</span><br><span class="line">    android:accessibilityEventTypes=&quot;typeNotificationStateChanged|typeWindowStateChanged|typeWindowContentChanged&quot;</span><br><span class="line">    android:accessibilityFeedbackType=&quot;feedbackGeneric&quot;</span><br><span class="line">    android:accessibilityFlags=&quot;flagReportViewIds&quot;</span><br><span class="line">    android:packageNames=&quot;com.tencent.mm&quot;</span><br><span class="line">    android:notificationTimeout=&quot;1&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>ps：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">packageName用于配置你想要监测的包名，如果多个则用逗号隔开，未配置此项时默认监测所有程序。</span><br><span class="line"></span><br><span class="line">accessibilityEventTypes表示该服务可监测界面中哪些事件类型,如窗口打开,滑动等,具体值可查看api。</span><br><span class="line"></span><br><span class="line">accessibilityFeedbackType 表示反馈方式,比如是语音播放,还是震动。</span><br><span class="line"></span><br><span class="line">canRetrieveWindowContent 表示该服务能否访问活动窗口中的内容，为false时getRootInActiveWindow()获取结果为null。</span><br><span class="line"></span><br><span class="line">notificationTimeout 接受事件的时间间隔。</span><br></pre></td></tr></table></figure></p>
+<p>常见的accessibilityEventType</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TYPE_WINDOW_STATE_CHANGED	窗口状态改变事件类型，打开PopupWindow、dialog、menu等</span><br><span class="line"></span><br><span class="line">TYPE_NOTIFICATION_STATE_CHANGED	通知栏、Toast事件</span><br><span class="line"></span><br><span class="line">TYPE_WINDOW_CONTENT_CHANGED	窗口中内容改变</span><br><span class="line"></span><br><span class="line">TYPE_VIEW_SCROLLED	控件滑动事件</span><br><span class="line"></span><br><span class="line">TYPE_WINDOWS_CHANGED	显示窗口改变</span><br><span class="line"></span><br><span class="line">TYPE_VIEW_TEXT_CHANGED	editText控件的内容发生改变</span><br><span class="line"></span><br><span class="line">TYPE_TOUCH_INTERACTION_START	用户开始触摸屏幕</span><br><span class="line"></span><br><span class="line">TYPE_TOUCH_INTERACTION_END	用户停止触摸屏幕</span><br></pre></td></tr></table></figure>
+<p>MainActivity</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">package com.xnzt.red;</span><br><span class="line"></span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.provider.Settings;</span><br><span class="line">import android.support.v7.app.AppCompatActivity;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.text.TextUtils;</span><br><span class="line">import android.util.Log;</span><br><span class="line">import android.widget.CheckBox;</span><br><span class="line">import android.widget.CompoundButton;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">import com.xnzt.red.service.RedPackageService;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private CheckBox cb_assist;</span><br><span class="line"></span><br><span class="line">    public static final String TAG = &quot;MainActivity&quot;;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        initView();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void initView()&#123;</span><br><span class="line">        cb_assist = findViewById(R.id.cb_assist_permission);</span><br><span class="line">        cb_assist.setOnCheckedChangeListener(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onResume() &#123;</span><br><span class="line">        super.onResume();</span><br><span class="line">        updateCheckBox(cb_assist, isAccessibilitySettingsOn());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void updateCheckBox(CheckBox box, boolean isChecked) &#123;</span><br><span class="line">        if (box != null) &#123;</span><br><span class="line">            box.setChecked(isChecked);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) &#123;</span><br><span class="line">        switch (buttonView.getId()) &#123;</span><br><span class="line">            case R.id.cb_assist_permission:</span><br><span class="line">                if (isChecked &amp;&amp; !isAccessibilitySettingsOn()) &#123;</span><br><span class="line">                    requestAssistPermission();</span><br><span class="line">                &#125;</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 申请辅助功能权限</span><br><span class="line">     */</span><br><span class="line">    private void requestAssistPermission() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            //打开系统设置中辅助功能</span><br><span class="line">            Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);</span><br><span class="line">            startActivity(intent);</span><br><span class="line">            Toast.makeText(MainActivity.this, &quot;找到抢红包，然后开启服务即可&quot;, Toast.LENGTH_LONG).show();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 检测辅助功能是否开启</span><br><span class="line">     */</span><br><span class="line">    private boolean isAccessibilitySettingsOn() &#123;</span><br><span class="line">        int accessibilityEnabled = 0;</span><br><span class="line">        String service = getPackageName() + &quot;/&quot; + RedPackageService.class.getCanonicalName();</span><br><span class="line">        try &#123;</span><br><span class="line">            accessibilityEnabled = Settings.Secure.getInt(getApplicationContext().getContentResolver(),</span><br><span class="line">                    android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);</span><br><span class="line">        &#125; catch (Settings.SettingNotFoundException e) &#123;</span><br><span class="line">            Log.d(TAG, &quot;ERROR: &quot; + e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(&apos;:&apos;);</span><br><span class="line"></span><br><span class="line">        if (accessibilityEnabled == 1) &#123;</span><br><span class="line">            String settingValue = Settings.Secure.getString(getApplicationContext().getContentResolver(),</span><br><span class="line">                    Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);</span><br><span class="line">            if (settingValue != null) &#123;</span><br><span class="line">                mStringColonSplitter.setString(settingValue);</span><br><span class="line">                while (mStringColonSplitter.hasNext()) &#123;</span><br><span class="line">                    String accessibilityService = mStringColonSplitter.next();</span><br><span class="line"></span><br><span class="line">                    Log.d(TAG, &quot;-------------- &gt; accessibilityService :: &quot; + accessibilityService + &quot; &quot; + service);</span><br><span class="line">                    if (accessibilityService.equalsIgnoreCase(service)) &#123;</span><br><span class="line">                        Log.d(TAG, &quot;服务已打开&quot;);</span><br><span class="line">                        return true;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            Log.d(TAG, &quot;***不可用***&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>RedPackageService</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br></pre></td><td class="code"><pre><span class="line">package com.xnzt.red.service;</span><br><span class="line"></span><br><span class="line">import android.accessibilityservice.AccessibilityService;</span><br><span class="line">import android.app.Notification;</span><br><span class="line">import android.app.PendingIntent;</span><br><span class="line">import android.speech.tts.TextToSpeech;</span><br><span class="line">import android.util.Log;</span><br><span class="line">import android.view.accessibility.AccessibilityEvent;</span><br><span class="line">import android.view.accessibility.AccessibilityNodeInfo;</span><br><span class="line">import android.view.accessibility.AccessibilityWindowInfo;</span><br><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.Locale;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author wubo</span><br><span class="line"> * @create 2019/3/19</span><br><span class="line"> * @desc</span><br><span class="line"> **/</span><br><span class="line">public class RedPackageService extends AccessibilityService &#123;</span><br><span class="line"></span><br><span class="line">    public static final String TAG = &quot;redpackage&quot;;</span><br><span class="line"></span><br><span class="line">    private List&lt;String&gt; activityNames = Arrays.asList(</span><br><span class="line">            &quot;com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyNotHookReceiveUI&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private List&lt;String&gt; ids = Arrays.asList(&quot;bjj&quot;, &quot;bi3&quot;, &quot;brt&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private String currentActivity = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    private TextToSpeech mTts;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onAccessibilityEvent(AccessibilityEvent event) &#123;</span><br><span class="line">        int eventType = event.getEventType();</span><br><span class="line">        currentActivity = String.valueOf(event.getClassName());</span><br><span class="line">        String strEventType = getEventType(event, eventType);</span><br><span class="line">        String strAction = getAction(event);</span><br><span class="line"></span><br><span class="line">        if (!&quot;com.tencent.mm&quot;.equals(event.getPackageName())) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        Log.d(TAG, &quot;EventType: &quot; + strEventType + &quot;\tAction:&quot; + strAction + &quot;\tClass:&quot; + event.getClassName() + &quot;\t&quot;);</span><br><span class="line"></span><br><span class="line">        //通知栏、Toast会触发该类型事件</span><br><span class="line">        if (eventType == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) &#123;</span><br><span class="line">            //通知栏事件</span><br><span class="line">            if (event.getParcelableData() != null &amp;&amp; event.getParcelableData() instanceof Notification) &#123;</span><br><span class="line">                Notification nc = (Notification) event.getParcelableData();</span><br><span class="line">                String text = String.valueOf(nc.tickerText);</span><br><span class="line">                Log.d(TAG, &quot;text：&quot; + text);</span><br><span class="line"></span><br><span class="line">                if (text.contains(&quot;红包&quot;)) &#123;</span><br><span class="line">                    //点开通知栏消息</span><br><span class="line">                    PendingIntent pendingIntent = nc.contentIntent;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        pendingIntent.send();</span><br><span class="line">                    &#125; catch (PendingIntent.CanceledException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) &#123;</span><br><span class="line"></span><br><span class="line">                //当前拆红包页面</span><br><span class="line">                for (int j = 0; j &lt; activityNames.size(); j++) &#123;</span><br><span class="line">                    if (activityNames.get(j).equals(event.getClassName())) &#123;</span><br><span class="line">                        //当前在红包待开页面，去拆红包</span><br><span class="line">                        getLuckyMoney(event);</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                if (&quot;com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyDetailUI&quot;.equals(event.getClassName())) &#123;</span><br><span class="line">                    Log.d(TAG, &quot;已抢到红包&quot;);</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (&quot;com.tencent.mm.ui.LauncherUI&quot;.equals(currentActivity)) &#123;</span><br><span class="line">                    //当前在聊天界面,去点中红包</span><br><span class="line">                    openLuckyChat();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            if (eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) &#123;</span><br><span class="line">                if (&quot;com.tencent.mm.ui.LauncherUI&quot;.equals(currentActivity)) &#123;</span><br><span class="line">                    //当前在聊天界面,去点中红包</span><br><span class="line">                    openLuckyChat();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void getLuckyMoney(AccessibilityEvent event) &#123;</span><br><span class="line">        Log.d(TAG, &quot;红包打开页面-----------此处不模拟------防止被封号&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        if(true)&#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//        getWindows();</span><br><span class="line">//        findFocus(AccessibilityNodeInfo.FOCUS_ACCESSIBILITY);</span><br><span class="line">//        event.getSource();</span><br><span class="line">        if (android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.LOLLIPOP) &#123;</span><br><span class="line">            List&lt;AccessibilityWindowInfo&gt; nodeInfos = getWindows();</span><br><span class="line">            for (AccessibilityWindowInfo window : nodeInfos) &#123;</span><br><span class="line">                AccessibilityNodeInfo nodeInfo = window.getRoot();</span><br><span class="line">                if (nodeInfo == null) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                List&lt;AccessibilityNodeInfo&gt; list = null;</span><br><span class="line">                for (String id : ids) &#123;</span><br><span class="line">                    list = nodeInfo.findAccessibilityNodeInfosByViewId(id);</span><br><span class="line">                    if (list != null &amp;&amp; list.size() &gt; 0) &#123;</span><br><span class="line">                        list.get(0).performAction(AccessibilityNodeInfo.ACTION_CLICK);</span><br><span class="line">                        Log.d(TAG, &quot;点击红包&quot;);</span><br><span class="line">                        return;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) &#123;</span><br><span class="line">            AccessibilityNodeInfo nodeInfo = getRootInActiveWindow();  //获得整个窗口对象</span><br><span class="line">            if (nodeInfo == null) &#123;</span><br><span class="line">                Log.d(TAG, &quot;rootWindow为空&quot;);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            List&lt;AccessibilityNodeInfo&gt; list = null;</span><br><span class="line">            for (String id : ids) &#123;</span><br><span class="line">                list = nodeInfo.findAccessibilityNodeInfosByViewId(id);</span><br><span class="line">                if (list != null &amp;&amp; list.size() &gt; 0) &#123;</span><br><span class="line">                    list.get(0).performAction(AccessibilityNodeInfo.ACTION_CLICK);</span><br><span class="line">                    Log.d(TAG, &quot;点击红包&quot;);</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            //如果没找到拆红包的button，则将界面上所有子节点都点击一次</span><br><span class="line">            for (int i = nodeInfo.getChildCount() - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">                if ((&quot;android.widget.Button&quot;).equals(nodeInfo.getChild(i).getClassName())) &#123;</span><br><span class="line">                    nodeInfo.getChild(i).performAction(AccessibilityNodeInfo.ACTION_CLICK);</span><br><span class="line">                    Log.d(TAG, &quot;点击红包-子节点&quot;);</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            Log.d(TAG, &quot;未找到开红包&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//            try &#123;</span><br><span class="line">//                Instrumentation inst = new Instrumentation();</span><br><span class="line">//                inst.sendPointerSync(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_DOWN, 540, 1535, 0));</span><br><span class="line">//                inst.sendPointerSync(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_UP, 540, 1535, 0));</span><br><span class="line">//            &#125; catch (Exception e) &#123;</span><br><span class="line">//                Log.e(TAG, e.toString());</span><br><span class="line">//            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private void openLuckyChat() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Log.d(TAG, &quot;进入聊天页面---openLuckyChat&quot;);</span><br><span class="line">        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow();</span><br><span class="line">        if (nodeInfo == null) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;AccessibilityNodeInfo&gt; list = nodeInfo.findAccessibilityNodeInfosByText(&quot;微信红包&quot;);</span><br><span class="line">        if (list.isEmpty()) &#123;</span><br><span class="line">            openChatPage(nodeInfo);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            //选择聊天记录中最新的红包</span><br><span class="line">            for (int i = list.size() - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">                AccessibilityNodeInfo parent = list.get(i).getParent();</span><br><span class="line">                Log.d(TAG, &quot;--&gt;领取红包:&quot; + parent);</span><br><span class="line">                if (parent != null) &#123;</span><br><span class="line">                    parent.performAction(AccessibilityNodeInfo.ACTION_CLICK);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void openChatPage(AccessibilityNodeInfo nodeInfo) &#123;</span><br><span class="line">        Log.d(TAG, &quot;打开聊天页面 逻辑暂未实现&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private String getEventType(AccessibilityEvent event, int eventType) &#123;</span><br><span class="line">        String str_eventType;</span><br><span class="line">        switch (eventType) &#123;</span><br><span class="line">            case AccessibilityEvent.TYPE_VIEW_CLICKED:</span><br><span class="line">                Log.i(TAG, &quot;==============Start====================&quot;);</span><br><span class="line">                str_eventType = &quot;TYPE_VIEW_CLICKED&quot;;</span><br><span class="line">                AccessibilityNodeInfo noteInfo = event.getSource();</span><br><span class="line">                Log.i(TAG, noteInfo.toString());</span><br><span class="line">                Log.i(TAG, &quot;=============END=====================&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_VIEW_FOCUSED:</span><br><span class="line">                str_eventType = &quot;TYPE_VIEW_FOCUSED&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_VIEW_LONG_CLICKED:</span><br><span class="line">                str_eventType = &quot;TYPE_VIEW_LONG_CLICKED&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_VIEW_SELECTED:</span><br><span class="line">                str_eventType = &quot;TYPE_VIEW_SELECTED&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED:</span><br><span class="line">                str_eventType = &quot;TYPE_VIEW_TEXT_CHANGED&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED:</span><br><span class="line">                str_eventType = &quot;TYPE_WINDOW_STATE_CHANGED&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:</span><br><span class="line">                str_eventType = &quot;TYPE_NOTIFICATION_STATE_CHANGED&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_TOUCH_EXPLORATION_GESTURE_END:</span><br><span class="line">                str_eventType = &quot;TYPE_TOUCH_EXPLORATION_GESTURE_END&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_ANNOUNCEMENT:</span><br><span class="line">                str_eventType = &quot;TYPE_ANNOUNCEMENT&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_TOUCH_EXPLORATION_GESTURE_START:</span><br><span class="line">                str_eventType = &quot;TYPE_TOUCH_EXPLORATION_GESTURE_START&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_VIEW_HOVER_ENTER:</span><br><span class="line">                str_eventType = &quot;TYPE_VIEW_HOVER_ENTER&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_VIEW_HOVER_EXIT:</span><br><span class="line">                str_eventType = &quot;TYPE_VIEW_HOVER_EXIT&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_VIEW_SCROLLED:</span><br><span class="line">                str_eventType = &quot;TYPE_VIEW_SCROLLED&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED:</span><br><span class="line">                str_eventType = &quot;TYPE_VIEW_TEXT_SELECTION_CHANGED&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:</span><br><span class="line">                str_eventType = &quot;TYPE_WINDOW_CONTENT_CHANGED&quot;;</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                str_eventType = String.valueOf(eventType);</span><br><span class="line">        &#125;</span><br><span class="line">        return str_eventType;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private String getAction(AccessibilityEvent event) &#123;</span><br><span class="line">        String action;</span><br><span class="line">        switch (event.getAction()) &#123;</span><br><span class="line">            case AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS:</span><br><span class="line">                action = &quot;ACTION_ACCESSIBILITY_FOCUS&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityNodeInfo.ACTION_CLEAR_ACCESSIBILITY_FOCUS:</span><br><span class="line">                action = &quot;ACTION_CLEAR_ACCESSIBILITY_FOCUS&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityNodeInfo.ACTION_CLEAR_FOCUS:</span><br><span class="line">                action = &quot;ACTION_CLEAR_FOCUS&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityNodeInfo.ACTION_CLEAR_SELECTION:</span><br><span class="line">                action = &quot;ACTION_CLEAR_SELECTION&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityNodeInfo.ACTION_CLICK:</span><br><span class="line">                action = &quot;ACTION_CLICK&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityNodeInfo.ACTION_SCROLL_FORWARD:</span><br><span class="line">                action = &quot;ACTION_SCROLL_FORWARD&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD:</span><br><span class="line">                action = &quot;ACTION_SCROLL_BACKWARD&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case AccessibilityNodeInfo.ACTION_FOCUS:</span><br><span class="line">                action = &quot;ACTION_FOCUS&quot;;</span><br><span class="line">                break;</span><br><span class="line">            case 0://com.android.systemui 一般是系统标题栏内容发生改变</span><br><span class="line">                //在微信内页但不在聊天详情页时，收到红包不会产生通知栏事件，只有系统标题栏内容发生改变</span><br><span class="line">                //标题栏中已经有微信未读消息图标时：TYPE_WINDOW_CONTENT_CHANGED	package:com.android.systemui	Class:android.widget.ImageView</span><br><span class="line">                //标题栏中尚未有未读消息图标时：TYPE_WINDOW_CONTENT_CHANGED	package:com.android.systemui	Class:android.widget.FrameLayout</span><br><span class="line">            default:</span><br><span class="line">                action = event.getAction() + &quot;&quot;;</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        return action;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onInterrupt() &#123;</span><br><span class="line">        Log.d(TAG, &quot;中断服务&quot;);</span><br><span class="line">        mTts.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onServiceConnected() &#123;</span><br><span class="line">        super.onServiceConnected();</span><br><span class="line">        Log.d(TAG, &quot;系统成功连接到辅助功能服务&quot;);</span><br><span class="line">        mTts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onInit(int status) &#123;</span><br><span class="line">                if (status == TextToSpeech.SUCCESS) &#123;</span><br><span class="line">                    mTts.setLanguage(Locale.CHINESE);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+    <div>
+
+          <div>
+        
+        <div style="text-align:center;color: #ccc;font-size:14px;margin-top:10px;">-------------  END  -------------</div>
+</div>
+
+
+     </div>
+  
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/mysql/mysql-remote-access/" rel="next" title="mysql远程访问">
+                <i class="fa fa-chevron-left"></i> mysql远程访问
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person" rel="external nofollow">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="sophieb" />
+            
+              <p class="site-author-name" itemprop="name">sophieb</p>
+              <p class="site-description motion-element" itemprop="description">享受生活</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指南"><span class="nav-number">2.</span> <span class="nav-text">指南</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规范细则"><span class="nav-number">3.</span> <span class="nav-text">规范细则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启无障碍服务"><span class="nav-number">4.</span> <span class="nav-text">开启无障碍服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践"><span class="nav-number">5.</span> <span class="nav-text">实践</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sophieb</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytnsAAp6';
+      var conf = '626e232027338ef0c0c17ae38204f95d';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("df0uiPeAUqq8ahLvlR6rW61J-gzGzoHsz", "5HznLmNsMn1rIgWlYE6jIecz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
